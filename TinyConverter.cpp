@@ -208,7 +208,7 @@ bool LoadDataStructures(char* filename, int vertexCount, int textureCount, int n
 			// read in the verties
 			if (input == ' ')
 			{
-				fin >> vertices[vertexIndex].x >> vertices[vertexIndex].z >> vertices[vertexIndex].z;
+				fin >> vertices[vertexIndex].x >> vertices[vertexIndex].y >> vertices[vertexIndex].z;
 
 				// invert the Z vertex to change to left hand system
 				vertices[vertexIndex].z = vertices[vertexIndex].z * -1.f;
@@ -221,7 +221,7 @@ bool LoadDataStructures(char* filename, int vertexCount, int textureCount, int n
 				fin >> texcoords[texcoordIndex].x >> texcoords[texcoordIndex].y;
 
 				// invert the V texture coord to LHS
-				texcoords[texcoordIndex].y = 1.0f - texcoords[texcoordIndex].y;
+				texcoords[texcoordIndex].y = 1.f - texcoords[texcoordIndex].y;
 				texcoordIndex++;
 			}
 
@@ -231,7 +231,7 @@ bool LoadDataStructures(char* filename, int vertexCount, int textureCount, int n
 				fin >> normals[normalIndex].x >> normals[normalIndex].y >> normals[normalIndex].z;
 
 				// invert the Z normal to change to LHS
-				normals[normalIndex].z = normals[normalIndex].z - 1.f;
+				normals[normalIndex].z = normals[normalIndex].z * -1.f;
 				normalIndex++;
 			}
 		}
@@ -280,7 +280,7 @@ bool LoadDataStructures(char* filename, int vertexCount, int textureCount, int n
 		nIndex = faces[i].nIndex1 - 1;
 
 		fout << vertices[vIndex].x << ' ' << vertices[vIndex].y << ' ' << vertices[vIndex].z << ' '
-			<< texcoords[tIndex].x << ' ' << texcoords[tIndex].y
+			<< texcoords[tIndex].x << ' ' << texcoords[tIndex].y << ' '
 			<< normals[nIndex].x << ' ' << normals[nIndex].y << ' ' << normals[nIndex].z << std::endl;
 
 		vIndex = faces[i].vIndex2 - 1;
@@ -288,7 +288,7 @@ bool LoadDataStructures(char* filename, int vertexCount, int textureCount, int n
 		nIndex = faces[i].nIndex2 - 1;
 
 		fout << vertices[vIndex].x << ' ' << vertices[vIndex].y << ' ' << vertices[vIndex].z << ' '
-			<< texcoords[tIndex].x << ' ' << texcoords[tIndex].y
+			<< texcoords[tIndex].x << ' ' << texcoords[tIndex].y << ' '
 			<< normals[nIndex].x << ' ' << normals[nIndex].y << ' ' << normals[nIndex].z << std::endl;
 
 		vIndex = faces[i].vIndex3 - 1;
@@ -296,7 +296,7 @@ bool LoadDataStructures(char* filename, int vertexCount, int textureCount, int n
 		nIndex = faces[i].nIndex3 - 1;
 
 		fout << vertices[vIndex].x << ' ' << vertices[vIndex].y << ' ' << vertices[vIndex].z << ' '
-			<< texcoords[tIndex].x << ' ' << texcoords[tIndex].y
+			<< texcoords[tIndex].x << ' ' << texcoords[tIndex].y << ' '
 			<< normals[nIndex].x << ' ' << normals[nIndex].y << ' ' << normals[nIndex].z << std::endl;
 	}
 
